@@ -1,5 +1,11 @@
 view: f_autorizaciones {
-  sql_table_name: `looker_poc_bi_tecnologia.f_autorizaciones` ;;
+  sql_table_name: (SELECT GENERATE_UUID() AS PK, * FROM `looker_poc_bi_tecnologia.f_autorizaciones`);;
+
+  dimension: pk {
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.PK ;;
+  }
 
   dimension: ano_autorizacion {
     type: string

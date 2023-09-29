@@ -42,6 +42,7 @@ view: d_fechas {
     sql: ${TABLE}.dic_ano_ant ;;
   }
   dimension: fecha {
+    primary_key: yes
     type: string
     sql: ${TABLE}.fecha ;;
   }

@@ -10,49 +10,57 @@ datagroup: poc_default_datagroup {
 
 persist_with: poc_default_datagroup
 
-explore: d_direccion_gerencias {}
-
-explore: d_autorizaciones {}
-
-explore: d_partidas_presup {}
-
-explore: d_perfiles {}
-
-explore: d_familia_presup {}
-
-explore: d_equipos_informaticos {}
-
-explore: d_area_negocio {}
-
-explore: d_grupos_tutores {}
-
-explore: d_proi_empresas {}
-
+explore: d_fechas {}
 explore: d_proi_peticion {}
-
 explore: d_proi_departamentos {}
-
-explore: d_servicio {}
-
-explore: d_proveedores {}
-
+explore: d_proi_empresas {}
+explore: d_centros_empr {}
 explore: d_proi_areas_peti {}
+explore: d_empresas {}
 
-explore: d_situacion_partidas {}
 
-explore: d_tipo_peticion {}
+explore: f_proi_imputaciones {
 
-explore: f_partidas_presupuestarias {}
+  join: d_fechas {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${d_fechas.fecha} = ${f_proi_imputaciones.id_fecha} ;;
+  }
 
-explore: f_autorizaciones {}
+  join: d_proi_peticion {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${d_proi_peticion.id} = ${f_proi_imputaciones.id_peticion} ;;
+  }
 
-explore: f_contratos_perfil {}
+#  join: d_proi_peticion_madre {
+#    type: left_outer
+#    relationship: many_to_one
+#    sql_on: ${d_proi_peticion.id} = ${f_proi_imputaciones.id_peticion_madre} ;;
+#  }
 
-explore: f_facturas {}
 
-explore: f_peticiones {}
+  join: d_proi_departamentos {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${d_proi_departamentos.id} = ${f_proi_imputaciones.id_departamento} ;;
+  }
 
-explore: f_peticiones_perfil {}
+  join: d_proi_empresas {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${d_proi_departamentos.id} = ${f_proi_imputaciones.id_empresa_usuario} ;;
+  }
 
-explore: f_proi_imputaciones {}
+  join: d_proi_areas_peti {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${d_proi_areas_peti.id} = ${f_proi_imputaciones.id_area} ;;
+  }
 
+  join: d_centros_empr {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${d_centros_empr.id} = ${f_proi_imputaciones.id_centro} ;;
+  }
+}
