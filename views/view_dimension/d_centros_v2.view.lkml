@@ -1,5 +1,5 @@
-view: d_centros_empr {
-  sql_table_name: `gbk-poc-datamvp-poc1.looker_poc_bi_dimension.d_centros_empr` ;;
+view: d_centros_v2 {
+  sql_table_name: `gbk-poc-datamvp-poc1.looker_poc_bi_dimension.d_centros_v2` ;;
   drill_fields: [id]
 
   dimension: id {
@@ -11,6 +11,10 @@ view: d_centros_empr {
     type: string
     sql: ${TABLE}.cent_bp ;;
   }
+  dimension: cent_cpostal {
+    type: number
+    sql: ${TABLE}.cent_cpostal ;;
+  }
   dimension: cent_f_pers {
     type: string
     sql: ${TABLE}.cent_f_pers ;;
@@ -19,10 +23,6 @@ view: d_centros_empr {
     type: string
     sql: ${TABLE}.centro ;;
   }
-  dimension: cod_estructura {
-    type: string
-    sql: ${TABLE}.cod_estructura ;;
-  }
   dimension: cod_total_org {
     type: string
     sql: ${TABLE}.cod_total_org ;;
@@ -30,6 +30,38 @@ view: d_centros_empr {
   dimension: comunidad_autonoma {
     type: string
     sql: ${TABLE}.comunidad_autonoma ;;
+  }
+  dimension: cont_admint {
+    type: number
+    sql: ${TABLE}.cont_admint ;;
+  }
+  dimension: cont_corporat {
+    type: number
+    sql: ${TABLE}.cont_corporat ;;
+  }
+  dimension: cont_empresas {
+    type: number
+    sql: ${TABLE}.cont_empresas ;;
+  }
+  dimension: cont_extranj {
+    type: number
+    sql: ${TABLE}.cont_extranj ;;
+  }
+  dimension: cont_parti {
+    type: number
+    sql: ${TABLE}.cont_parti ;;
+  }
+  dimension: cont_peque_as {
+    type: number
+    sql: ${TABLE}.cont_peque_as ;;
+  }
+  dimension: cont_pers {
+    type: number
+    sql: ${TABLE}.cont_pers ;;
+  }
+  dimension: cont_privada {
+    type: number
+    sql: ${TABLE}.cont_privada ;;
   }
   dimension: desc_nivel_bv {
     type: string
@@ -55,13 +87,13 @@ view: d_centros_empr {
     type: string
     sql: ${TABLE}.descrip_f_pers ;;
   }
+  dimension: descrip_nivel0 {
+    type: string
+    sql: ${TABLE}.descrip_nivel0 ;;
+  }
   dimension: descrip_nivel1 {
     type: string
     sql: ${TABLE}.descrip_nivel1 ;;
-  }
-  dimension: descrip_nivel10 {
-    type: string
-    sql: ${TABLE}.descrip_nivel10 ;;
   }
   dimension: descrip_nivel1_pyme {
     type: string
@@ -74,30 +106,6 @@ view: d_centros_empr {
   dimension: descrip_nivel3 {
     type: string
     sql: ${TABLE}.descrip_nivel3 ;;
-  }
-  dimension: descrip_nivel4 {
-    type: string
-    sql: ${TABLE}.descrip_nivel4 ;;
-  }
-  dimension: descrip_nivel5 {
-    type: string
-    sql: ${TABLE}.descrip_nivel5 ;;
-  }
-  dimension: descrip_nivel6 {
-    type: string
-    sql: ${TABLE}.descrip_nivel6 ;;
-  }
-  dimension: descrip_nivel7 {
-    type: string
-    sql: ${TABLE}.descrip_nivel7 ;;
-  }
-  dimension: descrip_nivel8 {
-    type: string
-    sql: ${TABLE}.descrip_nivel8 ;;
-  }
-  dimension: descrip_nivel9 {
-    type: string
-    sql: ${TABLE}.descrip_nivel9 ;;
   }
   dimension: descrip_nivel_ccg {
     type: string
@@ -139,21 +147,13 @@ view: d_centros_empr {
     type: string
     sql: ${TABLE}.descripcion ;;
   }
-  dimension: eafi_agente {
-    type: string
-    sql: ${TABLE}.eafi_agente ;;
-  }
   dimension: empresa {
     type: string
     sql: ${TABLE}.empresa ;;
   }
-  dimension: estado_agente {
+  dimension: fecha_alta {
     type: string
-    sql: ${TABLE}.estado_agente ;;
-  }
-  dimension: fecha_alta_agente {
-    type: string
-    sql: ${TABLE}.fecha_alta_agente ;;
+    sql: ${TABLE}.fecha_alta ;;
   }
   dimension: fecha_cierre {
     type: string
@@ -187,21 +187,45 @@ view: d_centros_empr {
     type: string
     sql: ${TABLE}.ind_clase_centro ;;
   }
-  dimension: ind_tipo_red {
+  dimension: ind_corporat {
     type: string
-    sql: ${TABLE}.ind_tipo_red ;;
+    sql: ${TABLE}.ind_corporat ;;
+  }
+  dimension: ind_empresas {
+    type: string
+    sql: ${TABLE}.ind_empresas ;;
+  }
+  dimension: ind_extranj {
+    type: string
+    sql: ${TABLE}.ind_extranj ;;
+  }
+  dimension: ind_parti {
+    type: string
+    sql: ${TABLE}.ind_parti ;;
+  }
+  dimension: ind_peque_as {
+    type: string
+    sql: ${TABLE}.ind_peque_as ;;
+  }
+  dimension: ind_privada {
+    type: string
+    sql: ${TABLE}.ind_privada ;;
+  }
+  dimension: ind_regimen {
+    type: string
+    sql: ${TABLE}.ind_regimen ;;
   }
   dimension: municipio {
     type: string
     sql: ${TABLE}.municipio ;;
   }
+  dimension: nivel0 {
+    type: string
+    sql: ${TABLE}.nivel0 ;;
+  }
   dimension: nivel1 {
     type: string
     sql: ${TABLE}.nivel1 ;;
-  }
-  dimension: nivel10 {
-    type: string
-    sql: ${TABLE}.nivel10 ;;
   }
   dimension: nivel1_pyme {
     type: string
@@ -214,30 +238,6 @@ view: d_centros_empr {
   dimension: nivel3 {
     type: string
     sql: ${TABLE}.nivel3 ;;
-  }
-  dimension: nivel4 {
-    type: string
-    sql: ${TABLE}.nivel4 ;;
-  }
-  dimension: nivel5 {
-    type: string
-    sql: ${TABLE}.nivel5 ;;
-  }
-  dimension: nivel6 {
-    type: string
-    sql: ${TABLE}.nivel6 ;;
-  }
-  dimension: nivel7 {
-    type: string
-    sql: ${TABLE}.nivel7 ;;
-  }
-  dimension: nivel8 {
-    type: string
-    sql: ${TABLE}.nivel8 ;;
-  }
-  dimension: nivel9 {
-    type: string
-    sql: ${TABLE}.nivel9 ;;
   }
   dimension: nivel_bv {
     type: string
@@ -302,6 +302,14 @@ view: d_centros_empr {
   dimension: tipo_oficina_virtual {
     type: string
     sql: ${TABLE}.tipo_oficina_virtual ;;
+  }
+  dimension: tutor_empr {
+    type: string
+    sql: ${TABLE}.tutor_empr ;;
+  }
+  dimension: tutor_virt {
+    type: string
+    sql: ${TABLE}.tutor_virt ;;
   }
   measure: count {
     type: count
