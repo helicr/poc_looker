@@ -15,7 +15,6 @@ explore: d_usuarios {}
 explore: d_centros_v2 {}
 explore: d_proi_departamentos {}
 explore: d_proi_peticion {}
-explore: d_peticion {} #Esta vista la creamos a partir de la tabla física d_proi_peticion
 explore: d_proi_empresas{}
 explore: d_proi_areas_peti{}
 explore: d_empresas {}
@@ -54,6 +53,7 @@ explore: f_proi_imputaciones {
   }
 
   join: d_peticion {
+    from: d_proi_peticion
     type: left_outer
     relationship: many_to_one
     sql_on: ${d_proi_peticion.id} = ${f_proi_imputaciones.id_peticion_madre} ;;
