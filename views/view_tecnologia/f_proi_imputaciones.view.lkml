@@ -19,10 +19,17 @@ view: f_proi_imputaciones {
     type: number
     sql: ${TABLE}.contador ;;
   }
-  measure: coste_incurrido_proyectos {
-    type: sum
+
+  dimension: coste_incurrido_proyectos {
+    type: number
     sql: ${TABLE}.coste_incurrido_proyectos ;;
   }
+
+  measure: total_coste_incurrido_proyectos {
+    type: sum
+    sql: ${coste_incurrido_proyectos} ;;
+  }
+
   dimension: fecha_carga {
     type: date
     sql: ${TABLE}.fecha_carga ;;
