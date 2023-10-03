@@ -7,6 +7,7 @@ view: d_fechas {
   }
   dimension: ano {
     type: number
+    value_format_name: id
     sql: ${TABLE}.ano ;;
   }
   dimension: ano_de_la_semana {
@@ -46,6 +47,14 @@ view: d_fechas {
     type: string
     sql: ${TABLE}.fecha ;;
   }
+
+  #dimension_group: jerarquia_fecha {
+  #  type: time
+  #  datatype: datetime
+  #  timeframes: [raw, date, month, year]
+  #  sql: ${TABLE}.fecha ;;
+  #}
+
   dimension: id_cuatrimestre {
     type: string
     sql: ${TABLE}.id_cuatrimestre ;;

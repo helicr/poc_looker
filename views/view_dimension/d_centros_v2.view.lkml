@@ -20,6 +20,7 @@ view: d_centros_v2 {
     sql: ${TABLE}.cent_f_pers ;;
   }
   dimension: centro {
+    drill_fields: [tipo_centro, centro, desc_tipo_centro_parti]
     type: string
     sql: ${TABLE}.centro ;;
   }

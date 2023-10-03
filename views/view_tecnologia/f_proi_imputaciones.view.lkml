@@ -26,6 +26,8 @@ view: f_proi_imputaciones {
   }
 
   measure: total_coste_incurrido_proyectos {
+    drill_fields: [coste_incurrido_proyectos]
+    value_format_name: decimal_2
     type: sum
     sql: ${coste_incurrido_proyectos} ;;
   }
