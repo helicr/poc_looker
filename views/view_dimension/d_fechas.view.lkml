@@ -48,13 +48,6 @@ view: d_fechas {
     sql: ${TABLE}.fecha ;;
   }
 
-  #dimension_group: jerarquia_fecha {
-  #  type: time
-  #  datatype: datetime
-  #  timeframes: [raw, date, month, year]
-  #  sql: ${TABLE}.fecha ;;
-  #}
-
   dimension: id_cuatrimestre {
     type: string
     sql: ${TABLE}.id_cuatrimestre ;;
@@ -126,4 +119,14 @@ view: d_fechas {
   measure: count {
     type: count
   }
+
+#fecha, semana, semana año, mes,  nombre mes, nombre mes abreviado, año, mes año
+  dimension_group: jerarquia_fecha {
+    type: time
+    datatype: datetime
+    timeframes: [year, month, month_name, date ]
+    sql: ${TABLE}.d_fechas ;;
+  }
+#empresa, codigo empresa, empresa + codigo
+
 }
