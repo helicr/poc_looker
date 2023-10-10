@@ -6,7 +6,6 @@ view: f_proi_imputaciones {
     type: string
     sql: ${TABLE}.PK ;;
   }
-
   dimension: alta_mes {
     type: string
     sql: ${TABLE}.alta_mes ;;
@@ -19,19 +18,10 @@ view: f_proi_imputaciones {
     type: number
     sql: ${TABLE}.contador ;;
   }
-
   dimension: coste_incurrido_proyectos {
     type: number
     sql: ${TABLE}.coste_incurrido_proyectos ;;
   }
-
-  measure: total_coste_incurrido_proyectos {
-    drill_fields: [coste_incurrido_proyectos]
-    value_format_name: decimal_2
-    type: sum
-    sql: ${coste_incurrido_proyectos} ;;
-  }
-
   dimension: fecha_carga {
     type: date
     sql: ${TABLE}.fecha_carga ;;
@@ -146,5 +136,160 @@ view: f_proi_imputaciones {
   }
   measure: count {
     type: count
+  }
+
+#METRICAS
+#CONTADOR ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.CONTADOR)
+  measure: m_contador {
+    drill_fields: [contador]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${contador} ;;
+  }
+#HORAS_CALIDAD ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_CALIDAD)
+  measure: m_horas_calidad {
+    drill_fields: [horas_calidad]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_calidad} ;;
+  }
+#HORAS_CORRECTIVO ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_CORRECTIVO)
+  measure: m_horas_correctivo {
+    drill_fields: [horas_correctivo]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_correctivo} ;;
+  }
+#HORAS_EVOLUTIVO ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_EVOLUTIVO)
+  measure: m_horas_evolutivo {
+    drill_fields: [horas_evolutivo]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_evolutivo} ;;
+  }
+#HORAS_FORMACION ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_FORMACION)
+  measure: m_horas_formacion {
+    drill_fields: [horas_formacion]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_formacion} ;;
+  }
+#HORAS_INACTIVIDAD ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_INACTIVIDAD)
+  measure: m_horas_inactividad {
+    drill_fields: [horas_inactividad]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_inactividad} ;;
+  }
+#HORAS_PLAN_2600 ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_PLAN_2600)
+  measure: m_horas_plan_2600 {
+    drill_fields: [horas_plan_2600]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_plan_2600} ;;
+  }
+#HORAS_PROYECTOS ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_PROYECTOS)
+  measure: m_horas_proyectos {
+    drill_fields: [horas_proyectos]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_proyectos} ;;
+  }
+#HORAS_SOPORTE_SI ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_SOPORTE_SI)
+  measure: m_horas_soporte_si {
+    drill_fields: [horas_soporte_si]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_soporte_si} ;;
+  }
+#HORAS_TEORICAS ==> max(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_TEORICAS)
+  measure: m_horas_teoricas {
+    drill_fields: [horas_teoricas]
+    value_format_name: decimal_0
+    type: max
+    sql: ${horas_teoricas} ;;
+  }
+#HORAS_VACACIONES ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_VACACIONES)
+  measure: m_horas_vacaciones {
+    drill_fields: [horas_vacaciones]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_vacaciones} ;;
+  }
+#COSTE_INCURRIDO_PROYECTOS ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.COSTE_INCURRIDO_PROYECTOS)
+  measure: m_coste_incurrido_proyectos {
+    drill_fields: [coste_incurrido_proyectos]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${coste_incurrido_proyectos} ;;
+  }
+#PORC_OPBJETIVO ==> max(- Métricas Imputaciones PROI F_PROI_IMPUTACION.PORC_OBJETIVO)
+  measure: m_porc_objetivo {
+    drill_fields: [porc_objetivo]
+    value_format_name: decimal_2
+    type: max
+    sql: ${porc_objetivo} ;;
+  }
+#HORAS_OTROS ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_OTROS)
+  measure: m_horas_otros {
+    drill_fields: [horas_otros]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_otros} ;;
+  }
+#HORAS_FACTURABLES ==> max(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_TEORICAS) * max(- Métricas Imputaciones PROI F_PROI_IMPUTACION.PORC_OBJETIVO)
+  measure: m_horas_facturables {
+    drill_fields: [horas_teoricas, porc_objetivo]
+    value_format_name: decimal_2
+    type: max
+    sql: ${horas_otros} ;;
+  }
+#PORC_HORAS_PROYECTOS_CONTRA_FACTURABLES ==>
+#case
+#when max(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_TEORICAS) * max(- Métricas Imputaciones PROI F_PROI_IMPUTACION.PORC_OBJETIVO) = 0 then 0
+#else sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_PROYECTOS) / nullif( max(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_TEORICAS) * max(- Métricas Imputaciones PROI F_PROI_IMPUTACION.PORC_OBJETIVO) , 0)
+#end
+
+#HORAS_INTEGRACION_EVO ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_INTEGRACION_EVO)
+  measure: m_horas_integracion_evo {
+    drill_fields: [horas_integracion_evo]
+    value_format_name: decimal_0
+    type: sum
+    sql: ${horas_integracion_evo} ;;
+  }
+#HORAS_TAREAS_TECNICAS_NO_FACT ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_TAREAS_TECNICAS_NO_FACT)
+  measure: m_horas_tareas_tecnicas_no_fact {
+    drill_fields: [horas_tareas_tecnicas_no_fact]
+    value_format_name: decimal_2
+    type: sum
+    sql: ${horas_tareas_tecnicas_no_fact} ;;
+  }
+#HORAS_ACTIVIDAD_SINDICATO ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_ACTIVIDAD_SINDICATO)
+  measure: m_horas_actividad_sindicato {
+    drill_fields: [horas_actividad_sindicato]
+    value_format_name: decimal_2
+    type: sum
+    sql: ${horas_actividad_sindicato} ;;
+  }
+#HORAS_ENFERMEDAD ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_ENFERMEDAD)
+  measure: m_horas_enfermedad {
+    drill_fields: [horas_enfermedad]
+    value_format_name: decimal_2
+    type: sum
+    sql: ${horas_enfermedad} ;;
+  }
+#HORAS_ENTREVISTAS_EVALUACION ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_ENTREVISTAS_EVALUACION)
+  measure: m_horas_entrevistas_evaluacion {
+    drill_fields: [horas_entrevistas_evaluacion]
+    value_format_name: decimal_2
+    type: sum
+    sql: ${horas_entrevistas_evaluacion} ;;
+  }
+#HORAS_MANTENIMIENTO ==> sum(- Métricas Imputaciones PROI F_PROI_IMPUTACION.HORAS_MANTENIMIENTO)
+  measure: m_horas_mantenimiento {
+    drill_fields: [horas_mantenimiento]
+    value_format_name: decimal_2
+    type: sum
+    sql: ${horas_mantenimiento} ;;
   }
 }
