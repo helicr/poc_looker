@@ -1,4 +1,5 @@
 view: d_usuarios {
+  label: "Usuarios"
   sql_table_name: `gbk-poc-datamvp-poc1.looker_poc_bi_dimension.d_usuarios` ;;
   drill_fields: [id]
 
