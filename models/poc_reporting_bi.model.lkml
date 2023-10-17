@@ -18,6 +18,7 @@ explore: d_empresas {}
 explore: d_proi_areas_peti{}
 explore: d_proi_departamentos {}
 explore: d_proi_empresas{}
+explore: d_proi_peticion{}
 #explore: d_proi_peticion {fields:{}}
 #explore: d_proi_peticion {set:{}}
 
